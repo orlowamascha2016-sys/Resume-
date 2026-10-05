@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мария Орлова — UX-исследователь · Портфолио</title>
+<style>
+  :root {
+    --bg: #faf9ff;
+    --card: #ffffff;
+    --accent: #7c5ccf;
+    --accent-light: #f0ebff;
+    --accent-dark: #5b3fa8;
+    --text: #2a2a35;
+    --text-soft: #6b6b78;
+    --text-muted: #9a9aa8;
+    --border: #e8e4f0;
+    --crit: #e74c5e;
+    --high: #e8853a;
+    --med: #5a9e4a;
+    --radius: 14px;
+    --shadow: 0 2px 12px rgba(124,92,207,.08);
+    --shadow-lg: 0 8px 32px rgba(124,92,207,.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* NAV */
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,255,.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; max-width: 1100px; margin: 0 auto; }
+  .topnav-logo { font-weight: 700; font-size: 16px; color: var(--accent-dark); text-decoration: none; }
+  .topnav-links { display: flex; gap: 18px; flex-wrap: wrap; }
+  .topnav-links a { font-size: 13px; color: var(--text-soft); text-decoration: none; transition: color .2s; }
+  .topnav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero { padding: 80px 0 60px; text-align: center; }
+  .hero-badge {
+    display: inline-block; background: var(--accent-light); color: var(--accent-dark);
+    padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: 42px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 16px; line-height: 1.2; }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub { font-size: 18px; color: var(--text-soft); max-width: 600px; margin: 0 auto 32px; }
+  .hero-stats { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 32px; font-weight: 800; color: var(--accent); }
+  .hero-stat-label { font-size: 13px; color: var(--text-muted); }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 28px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: all .2s;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); box-shadow: var(--shadow-lg); }
+  .btn-ghost { background: transparent; color: var(--accent-dark); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); }
+
+  /* SECTION */
+  section { padding: 56px 0; }
+  .section-label { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .section-title { font-size: 28px; font-weight: 800; margin-bottom: 28px; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+  .skill-cat { font-weight: 700; font-size: 15px; margin-bottom: 10px; color: var(--accent-dark); }
+  .skill-list { list-style: none; }
+  .skill-list li { font-size: 13px; color: var(--text-soft); margin-bottom: 6px; padding-left: 14px; position: relative; }
+  .skill-list li::before { content: '·'; color: var(--accent); position: absolute; left: 0; font-weight: 700; }
+  .skill-level { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-top: 8px; }
+  .lvl-confident { background: #e8f5e9; color: #2e7d32; }
+  .lvl-familiar { background: #fff3e0; color: #e65100; }
+
+  /* CASE NAV */
+  .case-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .case-nav a { font-size: 12px; padding: 6px 12px; border-radius: 6px; background: var(--accent-light); color: var(--accent-dark); text-decoration: none; transition: all .2s; }
+  .case-nav a:hover { background: var(--accent); color: #fff; }
+
+  /* CASE HEADER */
+  .case-header { background: linear-gradient(135deg, #7c5ccf 0%, #9b7ee0 100%); color: #fff; border-radius: var(--radius); padding: 48px 36px; margin-bottom: 32px; }
+  .case-header h2 { font-size: 30px; font-weight: 800; margin-bottom: 12px; }
+  .case-header p { font-size: 16px; opacity: .9; margin-bottom: 28px; }
+  .case-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .case-stat-num { font-size: 36px; font-weight: 800; }
+  .case-stat-label { font-size: 13px; opacity: .8; }
+
+  /* CASE BLOCK */
+  .case-block { margin-bottom: 40px; }
+  .case-block-num { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .case-block h3 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+  .case-block h4 { font-size: 15px; font-weight: 700; margin: 20px 0 8px; }
+  .case-block p { margin-bottom: 12px; color: var(--text-soft); }
+  .case-block ul, .case-block ol { margin: 8px 0 16px 20px; }
+  .case-block li { margin-bottom: 6px; color: var(--text-soft); }
+
+  /* CARDS GRID */
+  .cards-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 16px 0; }
+  .cards-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin: 16px 0; }
+  .info-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+  .info-card .tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; display: inline-block; }
+  .tag-crit { background: #fde8eb; color: var(--crit); }
+  .tag-high { background: #fff0e0; color: var(--high); }
+  .tag-med { background: #e8f5e9; color: var(--med); }
+  .info-card h5 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .info-card p { font-size: 13px; }
+  .quote { border-left: 3px solid var(--accent); padding: 8px 14px; margin: 10px 0; background: var(--accent-light); border-radius: 0 8px 8px 0; font-size: 13px; color: var(--text-soft); font-style: italic; }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--accent-light); color: var(--accent-dark); font-weight: 700; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-soft); }
+  tr:hover td { background: #faf8ff; }
+
+  /* PERSONA */
+  .persona { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .persona-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .persona-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent-light); color: var(--accent-dark); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .persona-name { font-weight: 700; font-size: 15px; }
+  .persona-meta { font-size: 12px; color: var(--text-muted); }
+
+  /* COMPARE */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .compare-col { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .compare-col.bad { border-color: #f5d0d5; }
+  .compare-col.good { border-color: #d0e8d5; }
+  .compare-col h5 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .compare-col ul { list-style: none; }
+  .compare-col li { font-size: 13px; margin-bottom: 8px; padding-left: 18px; position: relative; }
+  .compare-col.bad li::before { content: '✕'; color: var(--crit); position: absolute; left: 0; }
+  .compare-col.good li::before { content: '✓'; color: var(--med); position: absolute; left: 0; }
+
+  /* METRICS BIG */
+  .metrics-big { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+  .metric-big { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; text-align: center; box-shadow: var(--shadow); }
+  .metric-big-num { font-size: 36px; font-weight: 800; color: var(--accent); }
+  .metric-big-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  /* TIMELINE */
+  .timeline { display: flex; gap: 0; overflow-x: auto; margin: 16px 0; padding-bottom: 8px; }
+  .timeline-item { flex: 1; min-width: 140px; padding: 14px; border-right: 1px solid var(--border); }
+  .timeline-item:last-child { border-right: none; }
+  .timeline-period { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  .timeline-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .timeline-desc { font-size: 12px; color: var(--text-muted); }
+
+  /* LESSONS */
+  .lessons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .lesson-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+  .lesson-icon { font-size: 24px; margin-bottom: 8px; }
+  .lesson-card h5 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .lesson-card p { font-size: 13px; color: var(--text-soft); }
+
+  /* PM SECTION */
+  .pm-block { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .pm-block h4 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--accent-dark); }
+  .pm-block p { font-size: 14px; color: var(--text-soft); margin-bottom: 8px; }
+
+  /* EDU */
+  .edu-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-item h4 { font-size: 15px; font-weight: 700; }
+  .edu-item p { font-size: 13px; color: var(--text-muted); }
+
+  /* CONTACTS */
+  .contacts { text-align: center; padding: 60px 0; }
+  .contacts h2 { font-size: 28px; font-weight: 800; margin-bottom: 16px; }
+  .contacts p { font-size: 16px; color: var(--text-soft); margin-bottom: 24px; }
+  .contacts-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 30px 0; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .hero-stats { gap: 20px; }
+    .hero-stat-num { font-size: 24px; }
+    .section-title { font-size: 22px; }
+    .case-header { padding: 32px 20px; }
+    .case-header h2 { font-size: 22px; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .topnav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#top" class="topnav-logo">Мария Орлова</a>
+    <div class="topnav-links">
+      <a href="#skills">Навыки</a>
+      <a href="#case-mart">Кейс: АНО «Март»</a>
+      <a href="#case-kekova">Кейс: Сайт психолога</a>
+      <a href="#pm">Координация</a>
+      <a href="#education">Образование</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <span class="hero-badge">UX-исследователь · PM · Координация проектов</span>
+    <h1>От психологии к продукту:<br><span>исследую, проектирую, координирую</span></h1>
+    <p class="hero-sub">Провожу UX-исследования, проектирую структуру сайтов, координирую проекты от брифа до запуска. Бэкграунд в психологии + Python + дизайн.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">20</div><div class="hero-stat-label">интервью проведено</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">92</div><div class="hero-stat-label">респондента опрошено</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">10</div><div class="hero-stat-label">юзабилити-тестов</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">2,8×</div><div class="hero-stat-label">рост конверсии</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#case-mart" class="btn btn-primary">Посмотреть кейсы</a>
+      <a href="#contacts" class="btn btn-ghost">Связаться</a>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-label">Стек и компетенции</div>
+    <h2 class="section-title">Навыки и инструменты</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">UX Research</div>
+        <ul class="skill-list">
+          <li>Глубинные интервью</li>
+          <li>Юзабилити-тестирование</li>
+          <li>Опросы и анкетирование</li>
+          <li>Affinity-маппинг</li>
+          <li>Customer Journey Map</li>
+          <li>Конкурентный анализ</li>
+          <li>Юзабилити-аудит (Nielsen)</li>
+        </ul>
+        <span class="skill-level lvl-confident">Confident</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">PM / Координация</div>
+        <ul class="skill-list">
+          <li>Планирование и таймлайн</li>
+          <li>Управление стейкхолдерами</li>
+          <li>Приоритизация (Impact/Effort)</li>
+          <li>Контроль сроков</li>
+          <li>Ретроспективы</li>
+          <li>Notion-трекеры задач</li>
+        </ul>
+        <span class="skill-level lvl-confident">Confident</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Design</div>
+        <ul class="skill-list">
+          <li>Figma — макеты и прототипы</li>
+          <li>Структура сайтов</li>
+          <li>Визитки, лендинги</li>
+          <li>Презентации</li>
+          <li>Визуальная коммуникация</li>
+        </ul>
+        <span class="skill-level lvl-confident">Confident</span>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Data / Tech</div>
+        <ul class="skill-list">
+          <li>Python — скрипты, анализ</li>
+          <li>Google Forms / Sheets</li>
+          <li>Miro — синтез данных</li>
+          <li>PageSpeed Insights</li>
+          <li>HTML / CSS — прототипы</li>
+        </ul>
+        <span class="skill-level lvl-familiar">Familiar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== CASE 1: MART ===================== -->
+<section id="case-mart">
+  <div class="wrap">
+    <div class="case-nav">
+      <a href="#case-mart-about">О проекте</a>
+      <a href="#case-mart-goals">Цели</a>
+      <a href="#case-mart-methods">Методы</a>
+      <a href="#case-mart-personas">Персоны</a>
+      <a href="#case-mart-guide">Гайд</a>
+      <a href="#case-mart-insights">Инсайты</a>
+      <a href="#case-mart-cjm">CJM</a>
+      <a href="#case-mart-compare">Было/Стало</a>
+      <a href="#case-mart-solution">Решение</a>
+      <a href="#case-mart-recs">Рекомендации</a>
+      <a href="#case-mart-lessons">Выводы</a>
+    </div>
+
+    <div class="case-header">
+      <h2>UX-исследование сайта АНО «Март»</h2>
+      <p>Как мы изучали опыт родителей детей с особенностями развития при взаимодействии с сайтом центра арт-терапии — и что из этого вышло</p>
+      <div class="case-stats">
+        <div><div class="case-stat-num">12</div><div class="case-stat-label">интервью с родителями</div></div>
+        <div><div class="case-stat-num">47</div><div class="case-stat-label">ответов на опрос</div></div>
+        <div><div class="case-stat-num">5</div><div class="case-stat-label">юзабилити-тестов</div></div>
+        <div><div class="case-stat-num">6 нед.</div><div class="case-stat-label">длительность</div></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="case-block" id="case-mart-about">
+      <div class="case-block-num">01 — О проекте</div>
+      <h3>О проекте</h3>
+      <p>Все занятия в АНО «Март» — бесплатны. Центр с 2023 года помогает детям с особенностями развития через арт-терапию, музыкотерапию и сенсорные игры. Через сайт получает обращения от семей из разных регионов.</p>
+      <div class="cards-2">
+        <div class="info-card">
+          <h4>Клиент</h4>
+          <p>АНО «Март» — инклюзивный центр поддержки и развития детей. Помогает через арт-терапию, музыкотерапию и сенсорные игры. Стремится масштабировать деятельность — расширить географию, привлечь партнёров.</p>
+        </div>
+        <div class="info-card">
+          <h4>Задача</h4>
+          <p>Перед запуском обновлённого сайта: понять, как родители ищут информацию о занятиях, что им важно при выборе центра и где сайт теряет посетителей.</p>
+        </div>
+      </div>
+      <p><strong>Моя роль:</strong> UX-исследователь — планирование, сбор и анализ данных, отчёт. Координация с директором центра и командой волонтёров. Разработка гайда интервью, опросника и сценария юзабилити-тестирования.</p>
+      <p><strong>Инструменты:</strong> Google Forms · Zoom · Miro · Figma · Notion</p>
+    </div>
+
+    <!-- GOALS -->
+    <div class="case-block" id="case-mart-goals">
+      <div class="case-block-num">02 — Цели</div>
+      <h3>Цели и задачи исследования</h3>
+      <p><strong>Главная цель:</strong> понять, как родители детей с особенностями развития ищут информацию об арт-терапевтических занятиях, какие барьеры встречают на сайте и что помогает принять решение записаться.</p>
+      <h4>Исследовательские вопросы</h4>
+      <ul>
+        <li><strong>RQ1:</strong> Как родители узнают о центре «Март» и почему выбирают именно его?</li>
+        <li><strong>RQ2:</strong> Какие шаги проходит родитель от первого захода на сайт до записи?</li>
+        <li><strong>RQ3:</strong> Где на сайте родители теряются, не находят нужное или уходят?</li>
+        <li><strong>RQ4:</strong> Какая информация о методиках и специалистах критична для решения?</li>
+        <li><strong>RQ5:</strong> Как родители воспринимают процесс записи — удобно ли он?</li>
+      </ul>
+      <h4>Гипотезы</h4>
+      <ul>
+        <li><strong>H1:</strong> Родители не находят информацию о бесплатности в первые 30 секунд — главный фактор отказа.</li>
+        <li><strong>H2:</strong> Описание методик слишком академичное — родители не понимают пользу арт-терапии.</li>
+        <li><strong>H3:</strong> Процесс записи через форму неудобен — слишком много полей.</li>
+        <li><strong>H4:</strong> Родители из других регионов не понимают, доступен ли онлайн-формат.</li>
+      </ul>
+      <h4>Метрики успеха</h4>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Метрика</th><th>До</th><th>Цель</th><th>Способ измерения</th></tr>
+          <tr><td>Конверсия в запись</td><td>3,2%</td><td>8–10%</td><td>Аналитика формы записи</td></tr>
+          <tr><td>Отказ на главной (bounce rate)</td><td>58%</td><td>&lt;35%</td><td>Аналитика после запуска</td></tr>
+          <tr><td>Время до информации о бесплатности</td><td>~45 сек</td><td>&lt;15 сек</td><td>Юзабилити-тестирование</td></tr>
+          <tr><td>CSAT (удовлетворённость)</td><td>3,1 / 5</td><td>4,2 / 5</td><td>Опрос после теста</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- METHODS -->
+    <div class="case-block" id="case-mart-methods">
+      <div class="case-block-num">03 — Методология</div>
+      <h3>Методы исследования</h3>
+      <p>Смешанная методология — качественные методы для глубины и количественные для масштаба. Триангуляция данных из разных источников.</p>
+      <div class="cards-3">
+        <div class="info-card"><h5>Глубинные интервью</h5><p>12 интервью по 40–60 минут. Полуструктурированный формат с гибким зондингом.</p></div>
+        <div class="info-card"><h5>Опрос</h5><p>47 ответов через Google Forms и ВКонтакте. Сегментация по возрасту, опыту, региону.</p></div>
+        <div class="info-card"><h5>Юзабилити-тестирование</h5><p>5 модерируемых тестов. Задачи: найти методики, узнать о бесплатности, записаться. Think-aloud.</p></div>
+        <div class="info-card"><h5>Affinity-маппинг</h5><p>Кластеризация находок в Miro. Группировка: барьеры, мотивация, контент, навигация, запись.</p></div>
+        <div class="info-card"><h5>Customer Journey Map</h5><p>Карта пути родителя: от осознания потребности до первого занятия. Точки контакта, эмоции, барьеры.</p></div>
+        <div class="info-card"><h5>Анализ поведенческих паттернов</h5><p>Анализ записей экранов: карты кликов, время на задачу, путь скролла.</p></div>
+      </div>
+      <h4>Таймлайн</h4>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-period">Неделя 1</div><div class="timeline-title">Планирование</div><div class="timeline-desc">Бриф, цели, гипотезы, гайд, рекрутинг</div></div>
+        <div class="timeline-item"><div class="timeline-period">Недели 2–3</div><div class="timeline-title">Интервью</div><div class="timeline-desc">12 глубинных интервью через Zoom</div></div>
+        <div class="timeline-item"><div class="timeline-period">Неделя 3</div><div class="timeline-title">Опрос</div><div class="timeline-desc">47 ответов за 6 дней</div></div>
+        <div class="timeline-item"><div class="timeline-period">Неделя 4</div><div class="timeline-title">Юзабилити-тесты</div><div class="timeline-desc">5 тестов сайта с записью экрана</div></div>
+        <div class="timeline-item"><div class="timeline-period">Неделя 5</div><div class="timeline-title">Анализ</div><div class="timeline-desc">Affinity-маппинг, CJM, приоритизация</div></div>
+        <div class="timeline-item"><div class="timeline-period">Неделя 6</div><div class="timeline-title">Отчёт</div><div class="timeline-desc">Презентация, согласование плана</div></div>
+      </div>
+    </div>
+
+    <!-- PERSONAS -->
+    <div class="case-block" id="case-mart-personas">
+      <div class="case-block-num">04 — Респонденты</div>
+      <h3>Персоны</h3>
+      <div class="persona">
+        <div class="persona-head">
+          <div class="persona-avatar">ЕЛ</div>
+          <div><div class="persona-name">Елена, 34 года — «Ищущая мама»</div><div class="persona-meta">Ребёнок 4 года, РАС · Опыт арт-терапии: нет</div></div>
+        </div>
+        <div class="quote">«Я три раза заходила на сайт и каждый раз уходила. Думала — наверно, очень дорого, раз не пишут. А оказалось — бесплатно!»</div>
+        <p><strong>Цели:</strong> Найти центр, где ребёнку комфортно; понять, подходит ли арт-терапия.</p>
+        <p><strong>Барьеры:</strong> Не знает арт-терапию «на деле»; боится, что ребёнок не справится; не видит бесплатность.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-head">
+          <div class="persona-avatar">МР</div>
+          <div><div class="persona-name">Марина, 41 год — «Опытная мама»</div><div class="persona-meta">Ребёнок 7 лет, задержка речевого развития · Опыт: 2 года</div></div>
+        </div>
+        <div class="quote">«Я из Подмосковья. Когда увидела адрес в Москве, сразу закрыла сайт. Жаль — отзывы хорошие, но мне нужен онлайн-формат.»</div>
+        <p><strong>Цели:</strong> Найти центр ближе к дому или с онлайн-форматом; сравнить специалистов.</p>
+        <p><strong>Барьеры:</strong> Непонятно, есть ли онлайн; мало информации о специалистах; форма слишком длинная.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-head">
+          <div class="persona-avatar">ОЛ</div>
+          <div><div class="persona-name">Ольга, 38 лет — «Исследователь»</div><div class="persona-meta">Ребёнок 5 лет, гиперактивность, Казань · Изучает разные методы</div></div>
+        </div>
+        <div class="quote">«Мне важно увидеть, где будет находиться мой ребёнок. Это же не кружок по рисованию, это терапия.»</div>
+        <p><strong>Цели:</strong> Собрать максимум информации о методиках; сравнить подходы.</p>
+        <p><strong>Барьеры:</strong> Мало структурированной информации; нет сравнений; не понимает региональную доступность.</p>
+      </div>
+    </div>
+
+    <!-- GUIDE -->
+    <div class="case-block" id="case-mart-guide">
+      <div class="case-block-num">05 — Гайд интервью</div>
+      <h3>Гайд глубинного интервью</h3>
+      <p>Полуструктурированный гайд: разогрев → контекст → основная часть → зондирование → завершение.</p>
+      <ol>
+        <li><strong>Разогрев (5–7 мин):</strong> расскажите о себе и ребёнке; как ищете занятия?</li>
+        <li><strong>Опыт с сайтом (10–15 мин):</strong> как узнали о «Март»? что искали? чего не хватило?</li>
+        <li><strong>Методики и контент (10 мин):</strong> как поняли арт-терапию? что было непонятно?</li>
+        <li><strong>Процесс записи (5–8 мин):</strong> как записывались? что было трудно? сколько полей приемлемо?</li>
+        <li><strong>Решение и мотивация (5 мин):</strong> что важно при выборе? что убедило бы записаться?</li>
+        <li><strong>Завершение (3 мин):</strong> что не обсудили? одну вещь, которую изменили бы?</li>
+      </ol>
+      <p><strong>Правила зондирования:</strong> открытые вопросы, без наводящих, фокус на поведении, молчание как инструмент (3–5 сек), не подсказывать.</p>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div class="case-block" id="case-mart-insights">
+      <div class="case-block-num">06 — Инсайты</div>
+      <h3>Что выявило исследование</h3>
+      <div class="cards-2">
+        <div class="info-card">
+          <span class="tag tag-crit">Критично · 11 из 12</span>
+          <h5>Информация о бесплатности скрыта</h5>
+          <p>11 из 12 родителей не знали, что занятия бесплатны. 8 ушли с сайта за 30 секунд, не найдя информацию.</p>
+          <div class="quote">«Я три раза заходила и уходила. Думала — дорого. А оказалось — бесплатно!»</div>
+        </div>
+        <div class="info-card">
+          <span class="tag tag-crit">Критично · 9 из 12</span>
+          <h5>Описание методик слишком академичное</h5>
+          <p>9 из 12 не поняли, чем поможет арт-терапия. Термин «сенсорная интеграция» не знаком 10 из 12.</p>
+          <div class="quote">«Я прочитала "О нас" два раза и не поняла, что вы делаете с детьми.»</div>
+        </div>
+        <div class="info-card">
+          <span class="tag tag-high">Высокий · 7 из 12</span>
+          <h5>Форма записи отпугивает</h5>
+          <p>11 обязательных полей, включая «диагноз ребёнка». 7 из 12 — не готовы делиться диагнозом до контакта.</p>
+          <div class="quote">«Зачем сразу диагноз? Давайте сначала поговорим.»</div>
+        </div>
+        <div class="info-card">
+          <span class="tag tag-high">Высокий · 6 из 12</span>
+          <h5>Непонятно, есть ли онлайн-формат</h5>
+          <p>6 из 12 — из регионов. Нет указания, что занятия доступны онлайн — не записываются.</p>
+          <div class="quote">«Я из Казани. Увидела адрес в Москве — закрыла сайт.»</div>
+        </div>
+        <div class="info-card">
+          <span class="tag tag-med">Средний · 5 из 12</span>
+          <h5>Нет отзывов и историй семей</h5>
+          <p>5 из 12 сказали, что отзывы были бы решающим фактором. На сайте нет раздела с отзывами.</p>
+        </div>
+        <div class="info-card">
+          <span class="tag tag-med">Средний · 4 из 12</span>
+          <h5>Нет фото занятий и пространства</h5>
+          <p>4 из 12 хотели увидеть фото кабинетов, материалов, процесса. Текст не создаёт ощущение безопасности.</p>
+        </div>
+      </div>
+      <h4>Карта внимания (юзабилити-тесты)</h4>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Блок сайта</th><th>Время внимания</th><th>Дошли до блока</th></tr>
+          <tr><td>Hero (главный экран)</td><td>92%</td><td>100%</td></tr>
+          <tr><td>О центре</td><td>71%</td><td>100%</td></tr>
+          <tr><td>Описание методик (текст)</td><td>12%</td><td>95%</td></tr>
+          <tr><td>Расписание</td><td>8%</td><td>60%</td></tr>
+          <tr><td>Специалисты</td><td>5%</td><td>40%</td></tr>
+          <tr><td>Форма записи</td><td>22%</td><td>35%</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- CJM -->
+    <div class="case-block" id="case-mart-cjm">
+      <div class="case-block-num">07 — Карта пути</div>
+      <h3>Customer Journey Map</h3>
+      <p>Путь персоны «Елена, 34 года» от осознания потребности до записи.</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Этап</th><th>Действие</th><th>Эмоция</th><th>Барьер</th></tr>
+          <tr><td>Осознание</td><td>Родитель ищет занятия для ребёнка</td><td>Тревога, надежда</td><td>Не знает про арт-терапию</td></tr>
+          <tr><td>Поиск</td><td>Заходит на сайт «Март»</td><td>Интерес</td><td>Не понимает, чем занимается центр</td></tr>
+          <tr><td>Оценка</td><td>Ищет информацию о бесплатности и методиках</td><td>Разочарование</td><td>Бесплатность не указана, методики непонятны</td></tr>
+          <tr><td>Решение</td><td>Пытается записаться</td><td>Сопротивление</td><td>Форма длинная, диагноз обязателен</td></tr>
+          <tr><td>Действие</td><td>Уходит или пишет в мессенджер</td><td>Фрустрация</td><td>Уходит — потеря; пишет — лишний шаг</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- COMPARE -->
+    <div class="case-block" id="case-mart-compare">
+      <div class="case-block-num">08 — Сравнение</div>
+      <h3>Было / Стало</h3>
+      <div class="compare-grid">
+        <div class="compare-col bad">
+          <h5>Старый сайт</h5>
+          <ul>
+            <li>Сплошные текстовые блоки без подзаголовков</li>
+            <li>Нет навигационного меню — всё одной лентой</li>
+            <li>Бесплатность не указана — нужно звонить</li>
+            <li>11 обязательных полей в форме записи</li>
+            <li>Нет указания онлайн-формата</li>
+            <li>Нет фото занятий и кабинетов</li>
+            <li>Нет отзывов и историй семей</li>
+            <li>Описание методик — академический язык</li>
+            <li>Нет FAQ, нет мобильной адаптации</li>
+          </ul>
+        </div>
+        <div class="compare-col good">
+          <h5>Новый сайт (в разработке)</h5>
+          <ul>
+            <li>Структурированные блоки с подзаголовками</li>
+            <li>Навигационное меню с якорными ссылками</li>
+            <li>«Все занятия бесплатны» — на первом экране</li>
+            <li>Форма записи — 4 поля, диагноз необязателен</li>
+            <li>Указание онлайн-формата на главной</li>
+            <li>Галерея фото занятий и кабинетов</li>
+            <li>Раздел «Истории семей» с отзывами</li>
+            <li>Методики простым языком: Что → Как → Результат</li>
+            <li>FAQ, адаптив: 375 / 768 / 1200 px</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLUTION -->
+    <div class="case-block" id="case-mart-solution">
+      <div class="case-block-num">09 — Решение</div>
+      <h3>Спроектированная структура нового сайта</h3>
+      <div class="cards-3">
+        <div class="info-card"><h5>Шапка</h5><p>Логотип, меню: О центре, Услуги, Специалисты, Истории, FAQ. CTA «Записаться» + WhatsApp.</p></div>
+        <div class="info-card"><h5>Hero-блок</h5><p>УТП, бейдж «Все занятия бесплатны», «Очно и онлайн», CTA «Записаться на пробное».</p></div>
+        <div class="info-card"><h5>Услуги — карточки</h5><p>Карточки методик: Что это → Как проходит → Чем поможет. CTA после блока.</p></div>
+        <div class="info-card"><h5>Специалисты</h5><p>Карточки: фото, имя, специализация, опыт. Кнопка «Записаться к специалисту».</p></div>
+        <div class="info-card"><h5>Бесплатные занятия</h5><p>Отдельный блок: «Все занятия бесплатны», как это возможно, онлайн и очно.</p></div>
+        <div class="info-card"><h5>Истории семей</h5><p>3–5 историй «До → После». Короткие текстовые отзывы с фото.</p></div>
+        <div class="info-card"><h5>Галерея</h5><p>6–10 фото кабинетов, материалов, процесса. Без лиц детей или с согласия.</p></div>
+        <div class="info-card"><h5>FAQ + Форма</h5><p>Частые вопросы. Форма: имя, телефон, возраст, время. WhatsApp-кнопка.</p></div>
+      </div>
+    </div>
+
+    <!-- RECOMMENDATIONS -->
+    <div class="case-block" id="case-mart-recs">
+      <div class="case-block-num">10 — Рекомендации</div>
+      <h3>Приоритизированные рекомендации</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>#</th><th>Рекомендация</th><th>Ожидаемый эффект</th><th>Приоритет</th></tr>
+          <tr><td>1</td><td>Вынести «Все занятия бесплатны» на первый экран</td><td>Снижение bounce rate на 20–25%</td><td style="color:var(--crit);font-weight:700">Критичный</td></tr>
+          <tr><td>2</td><td>Переписать методики простым языком</td><td>Рост CSAT на 0,8–1,0 балла</td><td style="color:var(--crit);font-weight:700">Критичный</td></tr>
+          <tr><td>3</td><td>Сократить форму записи до 4 полей</td><td>Рост конверсии с 3,2% до 7–9%</td><td style="color:var(--crit);font-weight:700">Критичный</td></tr>
+          <tr><td>4</td><td>Добавить указание онлайн-формата</td><td>Привлечение региональной аудитории</td><td style="color:var(--high);font-weight:700">Высокий</td></tr>
+          <tr><td>5</td><td>Создать раздел «Истории семей»</td><td>Рост доверия и конверсии</td><td style="color:var(--high);font-weight:700">Высокий</td></tr>
+          <tr><td>6</td><td>Добавить галерею занятий</td><td>Снижение тревоги родителей</td><td style="color:var(--high);font-weight:700">Высокий</td></tr>
+          <tr><td>7</td><td>Добавить мессенджер</td><td>Альтернативный путь для тех, кто не любит формы</td><td style="color:var(--med);font-weight:700">Средний</td></tr>
+          <tr><td>8</td><td>Добавить FAQ</td><td>Снижение нагрузки на телефонные звонки</td><td style="color:var(--med);font-weight:700">Средний</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- LESSONS -->
+    <div class="case-block" id="case-mart-lessons">
+      <div class="case-block-num">11 — Выводы</div>
+      <h3>Чему я научилась</h3>
+      <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-icon">🔬</div><h5>Триангуляция решает</h5><p>Опрос показал одно, интервью — другое, тесты — третье. Вместе — полная картина.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">👥</div><h5>5 тестов достаточно</h5><p>После 5 тестов находки повторялись — закон убывающей отдачи сработал.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">📝</div><h5>Гайд — не сценарий</h5><p>Лучшие инсайты пришли из ответов, которые ушли от гайда.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">🚀</div><h5>Отчёт — не конец</h5><p>Самое ценное — внедрение. Без него исследование — просто документ.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">🤝</div><h5>Этика — не формальность</h5><p>Родители детей с особенностями — уязвимая аудитория. Согласие и анонимность обязательны.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">✦</div><h5>«Бесплатно» — главное слово</h5><p>Для НКО ключевая информация. Если не видна сразу — сайт теряет посетителей.</p></div>
+      </div>
+      <p style="margin-top:16px;font-size:13px;color:var(--text-muted)"><strong>Статус:</strong> Сайт в активной разработке. Рекомендации заложены в основу прототипа. После запуска — повторное измерение метрик.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== CASE 2: KEKOVA ===================== -->
+<section id="case-kekova">
+  <div class="wrap">
+    <div class="case-nav">
+      <a href="#case-kek-about">Обзор</a>
+      <a href="#case-kek-goals">Цели</a>
+      <a href="#case-kek-methods">Методы</a>
+      <a href="#case-kek-personas">Респонденты</a>
+      <a href="#case-kek-insights">Выводы</a>
+      <a href="#case-kek-cjm">CJM</a>
+      <a href="#case-kek-compare">Было/Стало</a>
+      <a href="#case-kek-solution">Решение</a>
+      <a href="#case-kek-priority">Приоритизация</a>
+      <a href="#case-kek-results">Результаты</a>
+      <a href="#case-kek-limits">Ограничения</a>
+    </div>
+
+    <div class="case-header">
+      <h2>Редизайн сайта психолога: от сплошного текста к структуре</h2>
+      <p>Полный цикл UX-исследования: глубинные интервью, юзабилити-аудит, проектирование и редизайн сайта психолога Натальи Кековой</p>
+      <div class="case-stats">
+        <div><div class="case-stat-num">8</div><div class="case-stat-label">интервью</div></div>
+        <div><div class="case-stat-num">45</div><div class="case-stat-label">респондентов опроса</div></div>
+        <div><div class="case-stat-num">5</div><div class="case-stat-label">юзабилити-тестов</div></div>
+        <div><div class="case-stat-num">12 нед.</div><div class="case-stat-label">на проект</div></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="case-block" id="case-kek-about">
+      <div class="case-block-num">01 — Обзор</div>
+      <h3>О проекте</h3>
+      <div class="cards-2">
+        <div class="info-card">
+          <h4>Клиент</h4>
+          <p>Наталья Викторовна Кекова — психолог с 20+ летним опытом. Выпускница МГУ, член Международной ассоциации психологов. Специализации: клиническая психология, позитивная психотерапия, когнитивная психология, арт-терапия, гипноз и др.</p>
+        </div>
+        <div class="info-card">
+          <h4>Задача</h4>
+          <p>Сайт на Tilda (nkekova.ru) не приводил клиентов: ~74% уходили, не дойдя до формы записи. Тексты — 2000+ слов без структуры, навигация отсутствовала, мобильная адаптация — минимальная. Цель — провести UX-исследование и спроектировать новую структуру.</p>
+        </div>
+      </div>
+      <p><strong>Моя роль:</strong> UX-исследователь — от брифа до прототипа. Работала самостоятельно, без команды дизайнеров и разработчиков.</p>
+      <p><strong>Инструменты:</strong> Google Forms · Zoom · Miro · Figma · Notion · PageSpeed Insights</p>
+    </div>
+
+    <!-- GOALS -->
+    <div class="case-block" id="case-kek-goals">
+      <div class="case-block-num">02 — Цели</div>
+      <h3>Цели и задачи</h3>
+      <p><strong>Главная цель:</strong> понять, почему ~74% посетителей уходили, не дойдя до формы записи, и спроектировать решение, повышающее конверсию.</p>
+      <h4>Гипотезы</h4>
+      <ul>
+        <li><strong>H1:</strong> Сплошные тексты — главная причина ухода в первые 40 секунд.</li>
+        <li><strong>H2:</strong> Скрытые цены снижают доверие: посетители думают «дорого» и уходят.</li>
+        <li><strong>H3:</strong> Отсутствие навигации заставляет скроллить всю страницу.</li>
+        <li><strong>H4:</strong> Мобильная версия теряет пользователей: форма не работает.</li>
+      </ul>
+      <h4>Метрики успеха</h4>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Метрика</th><th>До</th><th>Цель</th><th>Способ</th></tr>
+          <tr><td>Конверсия в заявку</td><td>~6%</td><td>&gt;12%</td><td>Подсчёт заявок</td></tr>
+          <tr><td>Процент отказов</td><td>~74%</td><td>&lt;40%</td><td>Веб-аналитика</td></tr>
+          <tr><td>Время до цены</td><td>~3 мин скролла</td><td>&lt;30 сек</td><td>Юзабилити-тесты</td></tr>
+          <tr><td>CSAT</td><td>3,1 / 5</td><td>&gt;4,0 / 5</td><td>Опрос после теста</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- METHODS -->
+    <div class="case-block" id="case-kek-methods">
+      <div class="case-block-num">03 — Методы</div>
+      <h3>Методы исследования</h3>
+      <div class="cards-3">
+        <div class="info-card"><h5>Глубинные интервью</h5><p>8 интервью по 30–45 минут. Полуструктурированный гайд из 12 вопросов.</p></div>
+        <div class="info-card"><h5>Опрос</h5><p>45 респондентов через Google Forms. 14 вопросов: демография, опыт, факторы выбора.</p></div>
+        <div class="info-card"><h5>Юзабилити-тестирование</h5><p>5 модерируемых сессий. 3 сценария на старом сайте. Think-aloud.</p></div>
+        <div class="info-card"><h5>Конкурентный анализ</h5><p>Бенчмаркинг 6 сайтов психологов Москвы. Таблица из 15 параметров.</p></div>
+        <div class="info-card"><h5>Юзабилити-аудит</h5><p>Эвристическая оценка по 10 критериям Nielsen. Анализ читабельности, контраста, скорости.</p></div>
+        <div class="info-card"><h5>Affinity-маппинг</h5><p>Кластеризация в Miro: барьеры контента, навигация, доверие, цена, запись.</p></div>
+      </div>
+      <h4>Конкурентный анализ — сводная</h4>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Параметр</th><th>nkekova.ru</th><th>Среднее по 6 сайтам</th><th>Вывод</th></tr>
+          <tr><td>Структура</td><td>Один скролл</td><td>Разделы + меню</td><td style="color:var(--high)">Ниже рынка</td></tr>
+          <tr><td>Навигация</td><td>Нет</td><td>Sticky-меню</td><td style="color:var(--crit)">Критично</td></tr>
+          <tr><td>CTA</td><td>1 кнопка внизу</td><td>2–4 CTA</td><td style="color:var(--high)">Ниже рынка</td></tr>
+          <tr><td>Цены</td><td>Скрыты</td><td>Видны в 1–2 клика</td><td style="color:var(--crit)">Критично</td></tr>
+          <tr><td>Адаптив</td><td>Минимальный</td><td>Полный</td><td style="color:var(--high)">Ниже рынка</td></tr>
+          <tr><td>SSL</td><td>Нет</td><td>Есть у 6/6</td><td style="color:var(--crit)">Критично</td></tr>
+          <tr><td>Скорость</td><td>4,2 сек</td><td>1,5–2,5 сек</td><td style="color:var(--high)">Ниже рынка</td></tr>
+        </table>
+      </div>
+      <h4>Таймлайн</h4>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-period">Недели 1–2</div><div class="timeline-title">Планирование</div><div class="timeline-desc">Бриф, гайд, опросник, рекрутинг</div></div>
+        <div class="timeline-item"><div class="timeline-period">Недели 3–5</div><div class="timeline-title">Сбор данных</div><div class="timeline-desc">8 интервью, 45 опросов, 5 тестов</div></div>
+        <div class="timeline-item"><div class="timeline-period">Недели 6–7</div><div class="timeline-title">Анализ</div><div class="timeline-desc">Affinity, CJM, аудит, конкуренция</div></div>
+        <div class="timeline-item"><div class="timeline-period">Недели 8–9</div><div class="timeline-title">Проектирование</div><div class="timeline-desc">Структура нового сайта</div></div>
+        <div class="timeline-item"><div class="timeline-period">Недели 10–12</div><div class="timeline-title">Прототип</div><div class="timeline-desc">Сборка, отчёт, презентация</div></div>
+      </div>
+    </div>
+
+    <!-- PERSONAS -->
+    <div class="case-block" id="case-kek-personas">
+      <div class="case-block-num">04 — Респонденты</div>
+      <h3>Персоны</h3>
+      <div class="persona">
+        <div class="persona-head">
+          <div class="persona-avatar">ЕА</div>
+          <div><div class="persona-name">Елена, 34 года</div><div class="persona-meta">Мать ребёнка 6 лет · Мобильное · Первый опыт</div></div>
+        </div>
+        <div class="quote">«Я зашла на сайт, а там стена текста. Я просто не смогла это читать, у меня нет времени.»</div>
+        <p><strong>Паттерн:</strong> заходит с телефона на 3–5 минут, сканирует глазами, ищет цену. Не находит за 30–40 сек — закрывает.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-head">
+          <div class="persona-avatar">ДК</div>
+          <div><div class="persona-name">Дмитрий, 41 год</div><div class="persona-meta">IT-руководитель · Десктоп · Прагматик</div></div>
+        </div>
+        <div class="quote">«Я скроллил минут пять, пока нашёл цены. Почему я должен читать три страницы, чтобы узнать цену?»</div>
+        <p><strong>Паттерн:</strong> открывает на ноутбуке, ищет структуру, сравнивает цены с 2–3 сайтами параллельно.</p>
+      </div>
+      <div class="persona">
+        <div class="persona-head">
+          <div class="persona-avatar">МС</div>
+          <div><div class="persona-name">Марина, 38 лет</div><div class="persona-meta">Начинающий психолог · Десктоп · Профессионал</div></div>
+        </div>
+        <div class="quote">«Истории трансформации — интересно, но я не могу их найти. Они без заголовков. Я просто пропустила.»</div>
+        <p><strong>Паттерн:</strong> проводит 5–8 минут, внимательно читает методы, проверяет дипломы, ищет кейсы.</p>
+      </div>
+      <h4>Сводка по опросу (45 респондентов)</h4>
+      <div class="metrics-big">
+        <div class="metric-big"><div class="metric-big-num">68%</div><div class="metric-big-label">ищут психолога с телефона</div></div>
+        <div class="metric-big"><div class="metric-big-num">52%</div><div class="metric-big-label">уходят, если нет цены</div></div>
+        <div class="metric-big"><div class="metric-big-num">81%</div><div class="metric-big-label">хотят записаться онлайн</div></div>
+        <div class="metric-big"><div class="metric-big-num">44%</div><div class="metric-big-label">не дочитывают длинные тексты</div></div>
+      </div>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div class="case-block" id="case-kek-insights">
+      <div class="case-block-num">05 — Ключевые выводы</div>
+      <h3>Что выявило исследование</h3>
+      <p><strong>Главная проблема:</strong> ~74% уходили в первые ~40 секунд. Причина — сплошные тексты без структуры, отсутствие навигации и скрытые цены.</p>
+      <h4>Юзабилити-аудит по Nielsen — топ-5</h4>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>#</th><th>Проблема</th><th>Эвристика Nielsen</th><th>Критичность</th></tr>
+          <tr><td>1</td><td>Цены спрятаны в самом низу — нет CTA в первом экране</td><td>Видимость системного статуса</td><td style="color:var(--crit)">Высокая</td></tr>
+          <tr><td>2</td><td>Тексты 2000+ слов без подзаголовков</td><td>Эстетика и минимализм</td><td style="color:var(--crit)">Высокая</td></tr>
+          <tr><td>3</td><td>Нет навигационного меню — скролл всей страницы</td><td>Навигация и ориентация</td><td style="color:var(--crit)">Высокая</td></tr>
+          <tr><td>4</td><td>Мобильная версия: текст не адаптируется, кнопки мелкие</td><td>Совместимость</td><td style="color:var(--crit)">Высокая</td></tr>
+          <tr><td>5</td><td>SEO-ключи вставлены неестественно</td><td>Соответствие реальному миру</td><td style="color:var(--high)">Средняя</td></tr>
+        </table>
+      </div>
+      <h4>Карта скролла (веб-аналитика, 6 мес.)</h4>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Блок</th><th>Доскроллили</th><th>Интерпретация</th></tr>
+          <tr><td>Hero (главный)</td><td>~92%</td><td>Видят почти все</td></tr>
+          <tr><td>Образование</td><td>~71%</td><td>Большинство</td></tr>
+          <tr><td>Задачи/направления</td><td>~64%</td><td>Большинство</td></tr>
+          <tr><td>Тексты (середина)</td><td>~12%</td><td>Почти все пропускают</td></tr>
+          <tr><td>Кейсы</td><td>~34%</td><td>Треть доходит</td></tr>
+          <tr><td>Цены</td><td>~28%</td><td>Меньше трети</td></tr>
+          <tr><td>Форма записи</td><td>~22%</td><td>Пятая часть</td></tr>
+        </table>
+      </div>
+      <p><strong>Ключевой инсайт:</strong> ~60% контента (истории и статьи) пользователи пропускали — именно этот контент был уникальным преимуществом психолога.</p>
+    </div>
+
+    <!-- CJM -->
+    <div class="case-block" id="case-kek-cjm">
+      <div class="case-block-num">06 — CJM</div>
+      <h3>Customer Journey Map</h3>
+      <p>Путь персоны «Елена, 34 года» — наиболее репрезентативной.</p>
+      <h4>Путь на старом сайте</h4>
+      <ol>
+        <li><strong>Осознание:</strong> ребёнок ведёт себя тревожно после развода. Нужен психолог. <em>Нейтрально</em></li>
+        <li><strong>Поиск:</strong> гуглит «психолог для ребёнка Москва». Находит nkekova.ru. <em>Надежда</em></li>
+        <li><strong>Оценка (старый):</strong> открывает с телефона. Стена текста. Нет раздела про детей. Скроллит 3 мин. Не находит цены. Уходит. <em>Раздражение → Фрустрация</em></li>
+      </ol>
+      <h4>Путь на новом сайте (цель)</h4>
+      <ol start="4">
+        <li><strong>Оценка (новый):</strong> карточки услуг. Находит «Детские психотравмы». Видит цену. Нажимает «Записаться». <em>Интерес → Уверенность</em></li>
+        <li><strong>Действие:</strong> заполняет форму или пишет в WhatsApp. Получает подтверждение. <em>Облегчение</em></li>
+      </ol>
+      <h4>Точки контакта и барьеры</h4>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Этап</th><th>Барьер (старый)</th><th>Решение (новый)</th></tr>
+          <tr><td>Поиск</td><td>SEO-ключи неестественны</td><td>Чистая семантика, структурированный сниппет</td></tr>
+          <tr><td>Первый экран</td><td>Стена текста, нет УТП, нет CTA</td><td>Фото, УТП, кнопка «Записаться»</td></tr>
+          <tr><td>Оценка</td><td>Сплошной текст, не понять специализации</td><td>9 карточек с иконками</td></tr>
+          <tr><td>Цена</td><td>Скрыты в самом низу, ~3 мин скролла</td><td>Отдельный раздел, 1 клик</td></tr>
+          <tr><td>Доверие</td><td>Нет отзывов, кейсы — сплошной текст</td><td>Сетка отзывов, карточки кейсов</td></tr>
+          <tr><td>Запись</td><td>1 кнопка в подвале, форма сломана на мобиле</td><td>CTA в 4 точках, WhatsApp, адаптивная форма</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- COMPARE -->
+    <div class="case-block" id="case-kek-compare">
+      <div class="case-block-num">07 — Сравнение</div>
+      <h3>Было / Стало</h3>
+      <div class="compare-grid">
+        <div class="compare-col bad">
+          <h5>Старый сайт — nkekova.ru (Tilda)</h5>
+          <ul>
+            <li>Сплошной текст 2000+ слов без структуры</li>
+            <li>Нет навигационного меню</li>
+            <li>Цены спрятаны в самом низу</li>
+            <li>Один CTA на всю страницу</li>
+            <li>Мобильная версия минимальная</li>
+            <li>SEO-ключи вставлены неестественно</li>
+            <li>Кейсы — сплошной текст</li>
+            <li>Документы — мелкие превью</li>
+            <li>Нет WhatsApp-интеграции</li>
+            <li>Скорость загрузки — 4,2 сек</li>
+            <li>Нет SSL-сертификата</li>
+          </ul>
+        </div>
+        <div class="compare-col good">
+          <h5>Новый сайт — прототип</h5>
+          <ul>
+            <li>Структурированные блоки с подзаголовками</li>
+            <li>Навигационное меню с якорными ссылками</li>
+            <li>Цены — карточки в отдельном разделе</li>
+            <li>CTA в 4 ключевых точках + WhatsApp</li>
+            <li>Адаптив: 375 / 768 / 1200 px</li>
+            <li>Чистые тексты, семантика в мета-тегах</li>
+            <li>Кейсы — карточки: Запрос → Техника → Результат</li>
+            <li>Документы — кликабельная галерея</li>
+            <li>WhatsApp-кнопка в шапке и форме</li>
+            <li>Скорость загрузки — ~0,8 сек</li>
+            <li>SSL — рекомендован к подключению</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLUTION -->
+    <div class="case-block" id="case-kek-solution">
+      <div class="case-block-num">08 — Решение</div>
+      <h3>Спроектированная структура</h3>
+      <div class="cards-3">
+        <div class="info-card"><h5>Шапка</h5><p>Логотип · Меню: Обо мне, Услуги, Кейсы, Статьи, Цены · CTA «Записаться» · WhatsApp</p></div>
+        <div class="info-card"><h5>Hero</h5><p>Фото · УТП: «Психолог с 20+ опытом. МГУ. Очно и онлайн» · CTA</p></div>
+        <div class="info-card"><h5>Обо мне</h5><p>Образование (МГУ, 2 высших) · 12+ техник в карточках · Член ассоциации</p></div>
+        <div class="info-card"><h5>С чем работаю</h5><p>9 карточек: Тревожность, Фобии, Выгорание, Детские травмы, Отношения и др.</p></div>
+        <div class="info-card"><h5>Услуги и цены</h5><p>4 карточки: Первичный — 10 000 ₽, Повторный — 8 000 ₽ и др.</p></div>
+        <div class="info-card"><h5>Кейсы</h5><p>3 карточки: «Женственность», «Реальное Я», «Нежность» — Запрос → Техника → Результат</p></div>
+        <div class="info-card"><h5>Отзывы</h5><p>Сетка с отзывами из мессенджеров · Звёздные рейтинги</p></div>
+        <div class="info-card"><h5>Документы</h5><p>Кликабельная галерея дипломов и сертификатов · Lightbox</p></div>
+        <div class="info-card"><h5>Запись</h5><p>Форма: имя, телефон, email, запрос · WhatsApp-кнопка</p></div>
+      </div>
+      <h4>Ключевые UX-решения</h4>
+      <ul>
+        <li><strong>Карточки вместо текста:</strong> 15 сек на сканирование vs 3 мин на чтение (5 респондентов).</li>
+        <li><strong>Цены в один клик:</strong> 52% уходили, если не видели цену.</li>
+        <li><strong>Множественные CTA:</strong> кнопка в 4 точках + WhatsApp. На старом — одна в самом низу (дохватывали 22%).</li>
+        <li><strong>Кейсы по схеме:</strong> Запрос → Техника → Результат. ~60% контента на старом сайте пропускали.</li>
+        <li><strong>Адаптив:</strong> 68% ищут с телефона; мобильная форма на старом не работала.</li>
+        <li><strong>Социальное доказательство:</strong> отзывы, дипломы, членство в ассоциации — 5 из 8 интервью назвали отсутствие барьером.</li>
+      </ul>
+    </div>
+
+    <!-- PRIORITIZATION -->
+    <div class="case-block" id="case-kek-priority">
+      <div class="case-block-num">09 — Приоритизация</div>
+      <h3>Матрица «Влияние / Усилие»</h3>
+      <div class="cards-2">
+        <div class="info-card" style="border-color:#d0e8d5">
+          <h5>Высокое влияние · Низкое усилие — сделать в первую очередь</h5>
+          <ul style="margin-top:8px">
+            <li>Вынести цены в отдельный раздел</li>
+            <li>Добавить CTA в hero и после услуг</li>
+            <li>Добавить WhatsApp-кнопку в шапку</li>
+            <li>Подключить SSL</li>
+          </ul>
+        </div>
+        <div class="info-card" style="border-color:#fff0e0">
+          <h5>Высокое влияние · Высокое усилие — во вторую очередь</h5>
+          <ul style="margin-top:8px">
+            <li>Разбить тексты на карточки услуг</li>
+            <li>Структурировать кейсы</li>
+            <li>Адаптивная вёрстка (3 брейкпоинта)</li>
+            <li>Сетка отзывов</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h5>Низкое влияние · Низкое усилие — быстрые улучшения</h5>
+          <ul style="margin-top:8px">
+            <li>Кликабельная галерея дипломов</li>
+            <li>Очистить SEO-ключи</li>
+            <li>Добавить фото психолога</li>
+          </ul>
+        </div>
+        <div class="info-card" style="border-color:#e8e4f0">
+          <h5>Низкое влияние · Высокое усилие — отложить</h5>
+          <ul style="margin-top:8px">
+            <li>Календарь доступности</li>
+            <li>Фильтр по направлениям</li>
+            <li>Статьи с подзаголовками (мало читают)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="case-block" id="case-kek-results">
+      <div class="case-block-num">10 — Результаты</div>
+      <h3>Метрики после внедрения</h3>
+      <p>Сравнение до и после редизайна (~3 месяца после запуска прототипа).</p>
+      <div class="metrics-big">
+        <div class="metric-big"><div class="metric-big-num">~2,8×</div><div class="metric-big-label">конверсия (6% → 17%)</div></div>
+        <div class="metric-big"><div class="metric-big-num">~62%</div><div class="metric-big-label">снижение отказов (74% → 28%)</div></div>
+        <div class="metric-big"><div class="metric-big-num">~3,2×</div><div class="metric-big-label">время на странице (40с → 2мин)</div></div>
+        <div class="metric-big"><div class="metric-big-num">~81%</div><div class="metric-big-label">ускорение загрузки (4,2с → 0,8с)</div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Цель</th><th>До</th><th>После</th><th>Статус</th></tr>
+          <tr><td>Повысить конверсию</td><td>~6%</td><td>~17%</td><td style="color:var(--med);font-weight:700">Достигнута</td></tr>
+          <tr><td>Снизить отказы</td><td>~74%</td><td>~28%</td><td style="color:var(--med);font-weight:700">Достигнута</td></tr>
+          <tr><td>Увеличить вовлечённость</td><td>~40 сек</td><td>~2 мин</td><td style="color:var(--med);font-weight:700">Достигнута</td></tr>
+          <tr><td>Ускорить загрузку</td><td>4,2 сек</td><td>~0,8 сек</td><td style="color:var(--med);font-weight:700">Достигнута</td></tr>
+          <tr><td>Мобильная конверсия</td><td>~2%</td><td>~12%</td><td style="color:var(--high);font-weight:700">Частично</td></tr>
+          <tr><td>SEO-оптимизация</td><td>Стр. 3</td><td>Стр. 1–2</td><td style="color:var(--high);font-weight:700">Частично</td></tr>
+        </table>
+      </div>
+      <p><strong>Итог:</strong> конверсия выросла ~в 2,8 раза, отказы снизились на ~62%, мобильная конверсия — ~в 6 раз. Клиент получает ~8 заявок в неделю (было 2–3), ~40% через форму, ~60% через WhatsApp.</p>
+      <h4>Что не сработало</h4>
+      <ul>
+        <li>Календарь доступности — клиент предпочёл ручное согласование.</li>
+        <li>Статьи с подзаголовками — низкий приоритет (читают ~15%).</li>
+        <li>SEO без SSL — без сертификата часть улучшений не работает.</li>
+      </ul>
+    </div>
+
+    <!-- LIMITATIONS -->
+    <div class="case-block" id="case-kek-limits">
+      <div class="case-block-num">11 — Ограничения и выводы</div>
+      <h3>Ограничения исследования</h3>
+      <div class="cards-3">
+        <div class="info-card"><h5>Размер выборки</h5><p>8 интервью и 5 тестов — достаточно для exploratory, но не для статистической значимости.</p></div>
+        <div class="info-card"><h5>Смещение выборки</h5><p>Опрос через личные контакты — смещение в сторону активных пользователей. 50+ почти не представлены.</p></div>
+        <div class="info-card"><h5>Прототип, не production</h5><p>Метрики на прототипе, не на боевом домене. Перенос может изменить результаты.</p></div>
+        <div class="info-card"><h5>Короткий период</h5><p>~3 месяца наблюдения. Недостаточно для оценки сезонности и долгосрочного эффекта.</p></div>
+        <div class="info-card"><h5>Один стейкхолдер</h5><p>Решения с одним человеком. Риск предвзятости: клиент не хотел публиковать цены.</p></div>
+        <div class="info-card"><h5>Нет A/B-теста</h5><p>Редизайн — замена, не параллельный тест. Улучшения могут быть связаны с внешними факторами.</p></div>
+      </div>
+      <h4>Чему я научилась</h4>
+      <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-icon">🔬</div><h5>Триангуляция решает</h5><p>Каждый метод показал разное. Вместе — полная картина.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">👥</div><h5>5 тестов достаточно</h5><p>Закон убывающей отдачи — после 5 тестов находки повторялись.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">📝</div><h5>Гайд — не сценарий</h5><p>Лучшие инсайты — вне гайда. Полуструктурированный формат себя оправдал.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">⚖️</div><h5>Честность важнее идеальных метрик</h5><p>SEO и мобильная конверсия — частично. Признать это важнее, чем нарисовать идеальную картину.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">🚀</div><h5>Отчёт — не конец</h5><p>Самое ценное — внедрение. Без него исследование — просто документ.</p></div>
+        <div class="lesson-card"><div class="lesson-icon">🔄</div><h5>Прототип ≠ финал</h5><p>Метрики на прототипе — ориентир. Нужен замер на production.</p></div>
+      </div>
+      <p style="margin-top:16px;font-size:13px;color:var(--text-muted)"><strong>Статус:</strong> Прототип собран и протестирован. После переноса на production — повторное измерение через 6 месяцев.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== PM SECTION ===================== -->
+<section id="pm">
+  <div class="wrap">
+    <div class="section-label">Координация и управление</div>
+    <h2 class="section-title">PM и координация проектов</h2>
+
+    <div class="pm-block">
+      <h4>Координация в АНО «Март»</h4>
+      <p>Планирование задач, распределение ролей, контроль сроков и качества. Вела 3 параллельных трека: занятия, мероприятия, партнёрства.</p>
+      <p>Синхронизировала команду из 5 человек. Внедрила Notion-трекер задач — прозрачность статусов выросла, срывы сроков снизились.</p>
+      <p><strong>Результаты:</strong> проекты сдавались в срок, нагрузка на команду стала равномернее, каждый участник видел свой блок задач и дедлайны.</p>
+    </div>
+
+    <div class="pm-block">
+      <h4>Самостоятельное ведение проекта редизайна (12 недель)</h4>
+      <p>От брифа с клиентом до прототипа — без команды дизайнеров и разработчиков. Управление всеми этапами: планирование, рекрутинг, сбор данных, анализ, проектирование, сборка прототипа, отчёт.</p>
+      <p>Согласование с стейкхолдером на каждом этапе. Приоритизация по матрице Impact/Effort. Документирование процесса и метрик.</p>
+      <p><strong>Результат:</strong> конверсия выросла в 2,8 раза, отказы снизились на 62%, клиент получает ~8 заявок в неделю вместо 2–3.</p>
+    </div>
+
+    <div class="pm-block">
+      <h4>Координация учебной практики</h4>
+      <p>Планирование и проведение занятий с детьми, работа с родителями, документирование процесса. Сбор обратной связи, корректировка подхода по результатам.</p>
+      <p>Метрики: снижение тревожности у ~60% детей, адаптация с 4 до 2 недель (оценка по наблюдению).</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== EDUCATION ===================== -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-label">Бэкграунд</div>
+    <h2 class="section-title">Образование и практика</h2>
+    <div class="edu-item">
+      <h4>Психология — бакалавриат</h4>
+      <p>ВКР, курсовые работы, практики. Исследовательский опыт: постановка гипотез, сбор данных, анализ, выводы и рекомендации.</p>
+    </div>
+    <div class="edu-item">
+      <h4>UX-исследования — практические проекты</h4>
+      <p>2 полноценных кейса: АНО «Март» (6 недель) и сайт психолога (12 недель). Глубинные интервью, опросы, юзабилити-тесты, CJM, affinity-маппинг.</p>
+    </div>
+    <div class="edu-item">
+      <h4>Design и прототипирование</h4>
+      <p>Figma, макеты сайтов, визитки, презентации. Проектирование структуры сайтов на основе данных исследования.</p>
+    </div>
+    <div class="edu-item">
+      <h4>Python и веб-разработка</h4>
+      <p>Учебные проекты: скрипты для обработки данных, базовая аналитика. HTML/CSS — статические прототипы сайтов.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== CONTACTS ===================== -->
+<div class="contacts" id="contacts">
+  <div class="wrap">
+    <h2>Давайте обсудим, чем могу быть полезна команде</h2>
+    <p>Готова к тестовому заданию, созвону или короткому брифу. Пришлю портфолио и примеры работ.</p>
+    <div class="contacts-links">
+      <a href="mailto:maschuliaorlova@yandex.ru" class="btn btn-primary">maschuliaorlova@yandex.ru</a>
+      <a href="https://vk.com/club229456533" target="_blank" class="btn btn-ghost">ВКонтакте</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="wrap">
+    Мария Орлова · UX-исследователь · Москва<br>
+    Портфолио · 2026 · Все данные обезличены
+  </div>
+</div>
+
+</body>
+</html>
